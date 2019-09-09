@@ -34,7 +34,7 @@ public class VendorControllerTest {
 
     @Test
     public void getAllVendors() {
-        BDDMockito.given(vendorController.getAllVendors())
+        BDDMockito.given(vendorRepository.findAll())
                 .willReturn(Flux.just(Vendor.builder().firstName("Bob").lastName("Marley").build(),
                         Vendor.builder().firstName("Elvis").lastName("Presley").build()));
 
@@ -47,7 +47,7 @@ public class VendorControllerTest {
 
     @Test
     public void getVendorById() {
-        BDDMockito.given(vendorController.getVendorById("1"))
+        BDDMockito.given(vendorRepository.findById("1"))
                 .willReturn(Mono.just(Vendor.builder().id("1").firstName("Bob").lastName("Marley").build()));
 
         webTestClient.get()
