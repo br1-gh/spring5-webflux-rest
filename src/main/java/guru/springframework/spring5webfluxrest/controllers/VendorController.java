@@ -20,7 +20,7 @@ public class VendorController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public Flux<Vendor> getAllVendors() {
         return vendorRepository.findAll();
     }

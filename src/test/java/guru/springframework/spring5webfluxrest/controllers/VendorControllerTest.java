@@ -39,7 +39,7 @@ public class VendorControllerTest {
                         Vendor.builder().firstName("Elvis").lastName("Presley").build()));
 
         webTestClient.get()
-                .uri(VENDORS_BASE_URI + "/")
+                .uri(VENDORS_BASE_URI)
                 .exchange()
                 .expectBodyList(Vendor.class)
                 .hasSize(2);
