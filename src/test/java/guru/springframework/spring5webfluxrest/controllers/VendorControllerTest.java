@@ -54,12 +54,14 @@ public class VendorControllerTest {
     @Test
     public void create() {
         BDDMockito.given(vendorRepository.saveAll(any(Publisher.class)))
-                .willReturn(Flux.just(Vendor.builder().firstName("Sunny").lastName("Friday").build()));
+                .willReturn(Flux.just(Vendor.builder().build()));
+
+        Flux<Vendor> vendorFlux = Flux.just(Vendor.builder().firstName("Sunny").lastName("Friday").build());
 
         webTestClient.post()
                 .uri("/api/v1/vendors/")
+                .body(vendorFlux, Vendor.class)
                 .exchange()
                 .expectStatus().isCreated();
-
     }
 }
