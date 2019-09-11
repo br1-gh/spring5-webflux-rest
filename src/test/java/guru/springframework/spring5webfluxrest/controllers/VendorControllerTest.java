@@ -83,14 +83,14 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void testPatchVendor() {
+    public void testPatchVendorWithChanges() {
         given(vendorRepository.findById(anyString()))
-                .willReturn(Mono.just(Vendor.builder().build()));
+                .willReturn(Mono.just(Vendor.builder().firstName("Jerry").lastName("Patchis").build()));
 
         given(vendorRepository.save(any(Vendor.class)))
                 .willReturn(Mono.just(Vendor.builder().build()));
 
-        Mono<Vendor> vendorToPatch = Mono.just(Vendor.builder().firstName("Jerry").lastName("Patchis").build());
+        Mono<Vendor> vendorToPatch = Mono.just(Vendor.builder().firstName("Jim").build());
 
         webTestClient.patch()
                 .uri("/api/v1/vendors/someId")
